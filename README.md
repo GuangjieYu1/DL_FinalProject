@@ -139,11 +139,6 @@ to evaluate any model on KITTI dataset.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Acknowledgements
-
-Prof. Siddharth Garg and Prof. Arsalan Mosenia supervised this study as part of the ECE-GY 7123:
-Intro To Deep Learning Course at New York University. We appreciate NYU providing the team
-with High Performance Computing facilities.
 
 
 ## Contributors
