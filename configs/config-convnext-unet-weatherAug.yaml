@@ -1,0 +1,37 @@
+appName:            DepthEstimation
+modelName:          convnext-unet-weatherAug
+
+Optimizer:
+    Type:           AdamW
+    LR:             1e-4
+    WeightDecay:    0.05
+
+Scheduler:
+    Type:           CosineAnnealingLR
+    NumEpochs:      20
+
+DataLoader:
+    Path:           /scratch/mp6021/Monodepth2/data/KITTI
+    SplitsType:     eigen_zhou
+    BatchSize:      24
+    NumWorkers:     14
+    WeatherAug:     True
+
+Logger:
+    Path:           ./logs
+
+Trainer:
+    Epochs:         20
+    ModelSavePath:  ./trained_models
+
+Model:
+    Arch:           UNET
+    Encoder:        EncoderModelConvNeXt
+    EncoderTrain:   True
+    DepthDecoder:   DepthDecoderModel
+    ESPCN:          False
+    PoseEncoder:    Shared
+    PoseDecoder:    PoseDecoderModel
+    Automasking:    True
+    K_Trainable:    False
+    Additional:     False
