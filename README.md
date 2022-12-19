@@ -143,6 +143,5 @@ to evaluate any model on KITTI dataset.
 
 ## Contributors
 
-* [Mayank Poddar](https://github.com/mayankpoddar)
-* [Akash Mishra](https://github.com/akashsky1994)
-* [Shikhar Vaish](https://github.com/svr8)
+* [Zhenyu Ma]
+* [Guangjie Yu]
