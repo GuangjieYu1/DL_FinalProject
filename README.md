@@ -63,17 +63,13 @@ nohup python -u train.py --model MONODEPTH2 > output.log &
 | Ours | convnext-tiny | UNet | bilinear | &#10003; | 0.7346 | 0.8911 | 0.9491  | 0.1828 | 0.2981 | 7.515 | 1.474 |
 | Ours | resnet50 | UNet | ESPCN | &#x2717; | 0.9111 | 0.9733 | 0.9878  | 0.1005 | **0.1693** | 3.978 | 0.5615 |
 
+### Sample Output
 
-### References
+|Monodepth2 Output          |ConvNeXt-UNet Output     |
+|---------------------------|-------------------------|
+|![](https://github.com/mayankpoddar/depthestimation/blob/main/assets/fig6.png)|![](https://github.com/mayankpoddar/depthestimation/blob/main/assets/WSP-2UP4_pred_convnext-unet_espcn-False.jpg)|
 
-[1] Godard, Cl ́ement, et al., ”Digging into self-supervised monocular depth estimation.” Proceedings of the IEEE/CVF International Conference on Computer Vision. 2019. arXiv:1806.01260
+|ConvNeXt-UNet-ESPCN Output |ConvNeXt-UNet++-ESPCN Output |
+|---------------------------|-----------------------------|
+|![](https://github.com/mayankpoddar/depthestimation/blob/main/assets/WSP-2UP4-convnext-unet-espcn.jpeg)|![](https://github.com/mayankpoddar/depthestimation/blob/main/assets/WSP-2UP4-convnext-unetplusplus-espcn-modified.jpeg)|
 
-[2] Source Code of Monodepth2: GitHub - nianticlabs/monodepth2: [ICCV 2019] Monocular depth estimation from a single image.
-
-[3] Zongwei Zhou, Md Mahfuzur Rahman Siddiquee, Nima Tajbakhsh, Jianming Liang, “UNet++: A Nested U-Net Architecture for Medical Image Segmentation”. arXiv:1807.10165.
-
-[4] Zhuang Liu, Hanzi Mao, Chao-Yuan Wu, Christoph Feichtenhofer, Trevor Darrell, Saining Xie, “A Con- vNet for the 2020s”. arXiv:2201.03545.
-
-[5] A. Geiger, P. Lenz, C. Stiller, R. Urtasun, ‘Vision meets Robotics: The KITTI Dataset’, International Journal of Robotics Research (IJRR), 2013.
-
-[6] P. K. Nathan Silberman, Derek Hoiem, R. Fergus, ‘Indoor Segmentation and Support Inference from RGBD Images’, ECCV, 2012.
