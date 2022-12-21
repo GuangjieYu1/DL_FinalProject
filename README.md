@@ -67,9 +67,9 @@ nohup python -u train.py --model MONODEPTH2 > output.log &
 
 |Monodepth2 Output          |ConvNeXt-UNet Output     |
 |---------------------------|-------------------------|
-|![](https://github.com/GuangjieYu1/DL_FinalProject/main/fig6.png)|![](https://github.com/GuangjieYu1/DL_FinalProject/main/WSP-2UP4_pred_convnext-unet_espcn-False.jpg)|
+|![](https://github.com/GuangjieYu1/DL_FinalProject/blob/main/fig6.png)|![](https://github.com/GuangjieYu1/DL_FinalProject/blob/main/WSP-2UP4_pred_convnext-unet_espcn-False.jpg)|
 
 |ConvNeXt-UNet-ESPCN Output |ConvNeXt-UNet++-ESPCN Output |
 |---------------------------|-----------------------------|
-|![](https://github.com/GuangjieYu1/DL_FinalProject/main/WSP-2UP4-convnext-unet-espcn.jpeg)|![](https://github.com/mayankpoddar/GuangjieYu1/DL_FinalProject/main/WSP-2UP4-convnext-unetplusplus-espcn-modified.jpeg)|
+|![](https://github.com/GuangjieYu1/DL_FinalProject/blob/main/WSP-2UP4-convnext-unet-espcn.jpeg)|![](https://github.com/mayankpoddar/GuangjieYu1/DL_FinalProject/blob/main/WSP-2UP4-convnext-unetplusplus-espcn-modified.jpeg)|
 
