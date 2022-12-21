@@ -1,75 +1,47 @@
-<div id="top"></div>
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://rehost.in/templates">
-    <img src="https://github.com/mayankpoddar/depthestimation/blob/main/predictions/testVideo.gif" alt="testVideo" width="450" height="300">
-    <img src="https://github.com/mayankpoddar/depthestimation/blob/main/predictions/testVideo-baseline-resnet-unet.gif" alt="baseline" width="450" height="300">
-  </a>
+# Depth Estimation using Self Supervised learning 
 
-<h3 align="center">Depth Estimation using Self Supervised learning</h3>
-  <p align="center">
-    an extension of "Digging into self-supervised monocular depth estimation"
-    <br />
-    <a href="https://www.tensorflow.org/tensorboard](https://pytorch.org/"><strong> Pytorch »</strong></a> | <a href="https://www.tensorflow.org/tensorboard"><strong> Tensorboard »</strong></a>
-    <br />
-  </p>
-</div>
 
 <!-- ABOUT THE PROJECT -->
-# Overview
+## Overview
 
-Keeping Monodepth2[1] as our baseline model, we propose certain architectural changes that
-improve the performance of Monodepth V2 by incorporating recent developments for convolutional
-neural networks and using a common encoder backbone. In the next phase, we plan to incorporate
-NYUv2 dataset and experiment with various augmentation techniques to further improve the
-performance on the optimal backbone and architecture selected. All the experiments are performed
-on the KITTI dataset [5] and the NYUv2 dataset [6].
+The goal of this project is to improve the performance of the Monodepth2 model by incorporating new techniques and using a common encoder backbone. We will test our modifications using the KITTI and NYUv2 datasets and consider using various data augmentation techniques. Our ultimate aim is to select the optimal architecture and backbone for the Monodepth2 model.
 
-* [Environment Setup and Model Training](#env)
-* [Experimentation Results](#results)
-* [References](#ref)
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<a name="env"></a>
-
-# Environment Setup
-
-1. Install Conda:
-
+## Environment Setup
 ```
 conda env create -f depthestimate_env.yaml
 conda activate depthestimate_env
 ```
 
-2. Install project dependencies:
+
+## Train Model
+
+| Model                        | Additions                                                                  | Link                                                                                                              |
+|------------------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| CAMLESS                      | Learnable Camera Intrinsics                                                | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/CAMLESS.zip )                   |
+| ESPCN                        | Using ESPCN for Upsampling                                                 | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/ESPCN.zip )                     |
+| CAMLESS_WEATHER_AUGMENTATION | CAMLESS with weather augmentation                                          | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/CAMLESS_WEATHER_AUG.zip )       |
+| MASKCAMLESS                  | Semantic segmentation suggestion from pretrained MASK-RCNN Model + CAMLESS | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS.zip )               |
+| MASKCAMLESS_V2               | MASKCAMLESS + skipping loss adjustment for Smoothness loss                 | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_V2.zip )            |
+| MASKCAMLESS_ESPCN            | Mask R-CNN + CAMLESS + ESPCN                                               | [`link`](https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_ESPCN.zip)             |
+| MASKCAMLESS_ESPCN_WEATHER    | MASKCAMLESS_ESPCN + weather augmentation                                   | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_ESPCN_WEATHER.zip ) |
+| MASKCAMLESS_ESPCN_V2         | MASKCAMLESS_ESPCN+ skipping loss adjustment for Smoothness loss            | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_ESPCN_V2.zip )      |
+
+
+Training your model
+```
+python train.py --model MONODEPTH2 --conf configs/model_config.cfg 
+```
+
+To run in background
 
 ```
-pip install -r requirements.txt
+nohup python -u train.py --model MONODEPTH2 > output.log &
 ```
 
-# Train Model
+## Experiment
 
-```
-python main.py --conf configs/config.yaml 
-```
-
-You can run it in the background on HPC using:
-
-```
-nohup python main.py --conf configs/config.yaml > output.log &
-```
-Use tb flag to enable tensorboard
-```
-python main.py --conf configs/config.yaml -tb 
-```
-use tbpath `-tbpth ./logs` for custom log path
-  
-<a name="results"></a>
-# Experiment
-
-## Data Reported
+### Data Reported
 
 |Implementation                                                  |a1    |a2    |a3    |abs_rel|log_rms|rms  |sq_rel|
 |----------------------------------------------------------------|------|------|------|-------|-------|-----|------|
@@ -85,41 +57,7 @@ use tbpath `-tbpth ./logs` for custom log path
 |Ours - MonoDepth2 + Mask R-CNN + ESPCN + CamLess (Adjusted Loss)|0.8854|0.9621|0.9842|0.1166 |0.1884 |3.485|0.4793|
 
 
-| Model                        | Additions                                                                  | Link                                                                                                              |
-|------------------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| CAMLESS                      | Learnable Camera Intrinsics                                                | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/CAMLESS.zip )                   |
-| ESPCN                        | Using ESPCN for Upsampling                                                 | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/ESPCN.zip )                     |
-| CAMLESS_WEATHER_AUGMENTATION | CAMLESS with weather augmentation                                          | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/CAMLESS_WEATHER_AUG.zip )       |
-| MASKCAMLESS                  | Semantic segmentation suggestion from pretrained MASK-RCNN Model + CAMLESS | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS.zip )               |
-| MASKCAMLESS_V2               | MASKCAMLESS + skipping loss adjustment for Smoothness loss                 | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_V2.zip )            |
-| MASKCAMLESS_ESPCN            | Mask R-CNN + CAMLESS + ESPCN                                               | [`link`](https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_ESPCN.zip)             |
-| MASKCAMLESS_ESPCN_WEATHER    | MASKCAMLESS_ESPCN + weather augmentation                                   | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_ESPCN_WEATHER.zip ) |
-| MASKCAMLESS_ESPCN_V2         | MASKCAMLESS_ESPCN+ skipping loss adjustment for Smoothness loss            | [ `link` ]( https://storage.googleapis.com/depth-estimation-weights/final_weights/MASKCAMLESS_ESPCN_V2.zip )      |
-
-## Reproduce Results
-
-### Running on Datasets
-
-Unzip your weights to /path/to/unzipped/weights. 
-The results shown above can be reproduced by running:
-
-```
-python eval.py /path/to/config.yaml /path/to/unzipped/weights/
-```
-
-to evaluate any model on KITTI dataset.
-
-### Running on Custom Image and Videos
-
-* `/test-image.ipynb`: This notebook can be used for running experiment on custom images.
-* `/test-video.ipynb`: This notebook can be used for running experiment on custom images.
-
-<hr/>
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<a name="ref"></a>
-## References
+### References
 
 [1] Godard, Cl ́ement, et al., ”Digging into self-supervised monocular depth estimation.” Proceedings of the IEEE/CVF International Conference on Computer Vision. 2019. arXiv:1806.01260
 
@@ -133,11 +71,9 @@ to evaluate any model on KITTI dataset.
 
 [6] P. K. Nathan Silberman, Derek Hoiem, R. Fergus, ‘Indoor Segmentation and Support Inference from RGBD Images’, ECCV, 2012.
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-## Contributors
+### Contributors
 
 * [Zhenyu Ma]
 * [Guangjie Yu]
