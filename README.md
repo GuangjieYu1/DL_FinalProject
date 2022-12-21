@@ -2,6 +2,12 @@
 
 
 <!-- ABOUT THE PROJECT -->
+
+### Contributors
+
+* [Zhenyu Ma]
+* [Guangjie Yu]
+
 ## Overview
 
 The goal of this project is to improve the performance of the Monodepth2 model by incorporating new techniques and using a common encoder backbone. We will test our modifications using the KITTI and NYUv2 datasets and consider using various data augmentation techniques. Our ultimate aim is to select the optimal architecture and backbone for the Monodepth2 model.
@@ -41,7 +47,7 @@ nohup python -u train.py --model MONODEPTH2 > output.log &
 
 ## Experiment
 
-### Data Reported
+### Result Reported
 
 
 | Impl | Encoder | Arch | Upsampling | K | a1 | a2 | a3 | abs_rel | log_rms | rms | sq_rel |
@@ -71,10 +77,3 @@ nohup python -u train.py --model MONODEPTH2 > output.log &
 [5] A. Geiger, P. Lenz, C. Stiller, R. Urtasun, ‘Vision meets Robotics: The KITTI Dataset’, International Journal of Robotics Research (IJRR), 2013.
 
 [6] P. K. Nathan Silberman, Derek Hoiem, R. Fergus, ‘Indoor Segmentation and Support Inference from RGBD Images’, ECCV, 2012.
-
-
-
-### Contributors
-
-* [Zhenyu Ma]
-* [Guangjie Yu]
