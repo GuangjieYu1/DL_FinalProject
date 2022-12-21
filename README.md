@@ -3,7 +3,7 @@
 
 <!-- ABOUT THE PROJECT -->
 
-### Contributors
+## Contributors
 
 * [Zhenyu Ma]
 * [Guangjie Yu]
